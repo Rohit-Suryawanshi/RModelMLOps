@@ -24,9 +24,10 @@ dependencies:
   - r-proc
   - r-jsonlite
   - r-C50
-  - rpy2
   - pandas
   - gfortran_linux-64
+  - r-caTools
+  - r-utils
 
   - pip:
       # Base AzureML SDK
@@ -38,6 +39,7 @@ dependencies:
 
       # Training deps
       - scikit-learn
+      - rpy2==3.3.6
 
       # Scoring deps
       - inference-schema[numpy-support]
