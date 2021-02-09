@@ -49,9 +49,9 @@ class Env:
     dataset_name: Optional[str] = os.environ.get("DATASET_NAME")
     datastore_name: Optional[str] = os.environ.get("DATASTORE_NAME")
     dataset_version: Optional[str] = os.environ.get("DATASET_VERSION")
-    run_evaluation: Optional[str] = os.environ.get("RUN_EVALUATION", "true")
+    run_evaluation: Optional[str] = os.environ.get("RUN_EVALUATION", "false")
     allow_run_cancel: Optional[str] = os.environ.get(
-        "ALLOW_RUN_CANCEL", "true"
+        "ALLOW_RUN_CANCEL", "false"
     )  # NOQA: E501
     aml_env_name: Optional[str] = os.environ.get("AML_ENV_NAME")
     aml_env_train_conda_dep_file: Optional[str] = os.environ.get(
