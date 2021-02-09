@@ -11,6 +11,9 @@ dependencies:
     # dependencies for MLOps with R.
   - r=3.6.0
   - r-essentials=3.6.0
+  - r-caTools
+  - r-C50
+  - r-utils
 
   - conda-forge::jq
   - pip=20.0.*
@@ -27,3 +30,5 @@ dependencies:
       - flake8==3.7.*
       - flake8_formatter_junit_xml==0.0.*
       - azure-cli==2.3.*
+      - rpy2==3.3.6
+      
