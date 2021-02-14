@@ -17,6 +17,11 @@
 # These dependencies are used to create the environment used by the batch score 
 # pipeline step
 name: diabetes_regression_scoring_env
+channels:
+  - r
+  - conda-forge
+  - anaconda
+
 dependencies:
   # The python interpreter version.
   # Currently Azure ML Workbench only supports 3.5.2 and later.
@@ -29,7 +34,6 @@ dependencies:
   - pandas
   - gfortran_linux-64
   - r-caTools
-  - r-utils
   
   - pip:
       # Base AzureML SDK

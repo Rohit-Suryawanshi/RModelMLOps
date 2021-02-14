@@ -1,5 +1,10 @@
 name: mlopspython_ci
 
+channels:
+  - r
+  - conda-forge
+  - anaconda
+
 dependencies:
   # The python interpreter version.
   - python=3.7.*
@@ -13,7 +18,6 @@ dependencies:
   - r-essentials=3.6.0
   - r-caTools
   - r-C50
-  - r-utils
 
   - conda-forge::jq
   - pip=20.0.*
