@@ -14,7 +14,7 @@ otherwise. ​
  ​
 THE SOFTWARE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
 OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFINGEMENT. IN NO EVENT SHALL
 MICROSOFT OR ITS LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
 SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
 PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
@@ -26,7 +26,7 @@ POSSIBILITY OF SUCH DAMAGE.
 from azureml.core import Run
 import argparse
 import traceback
-from util.model_helper import get_model
+from first_project.util.model_helper import get_model
 
 run = Run.get_context()
 
@@ -89,14 +89,15 @@ parser.add_argument(
 parser.add_argument(
     "--allow_run_cancel",
     type=str,
-    help="Set this to false to avoid evaluation step from cancelling run after an unsuccessful evaluation",  # NOQA: E501
+    help="Set this to false to avoid evaluation step from cancelling run after an unsuccessful evaluation",
+    # NOQA: E501
     default="true",
 )
 
 args = parser.parse_args()
-if (args.run_id is not None):
+if args.run_id is not None:
     run_id = args.run_id
-if (run_id == 'amlcompute'):
+if run_id == 'amlcompute':
     run_id = run.parent.id
 model_name = args.model_name
 metric_eval = "mse"
@@ -109,20 +110,20 @@ try:
     tag_name = 'experiment_name'
 
     model = get_model(
-                model_name=model_name,
-                tag_name=tag_name,
-                tag_value=exp.name,
-                aml_workspace=ws)
+        model_name=model_name,
+        tag_name=tag_name,
+        tag_value=exp.name,
+        aml_workspace=ws)
 
-    if (model is not None):
+    if model is not None:
         production_model_mse = 10000
-        if (metric_eval in model.tags):
+        if metric_eval in model.tags:
             production_model_mse = float(model.tags[metric_eval])
         new_model_mse = float(run.parent.get_metrics().get(metric_eval))
-        if (production_model_mse is None or new_model_mse is None):
+        if production_model_mse is None or new_model_mse is None:
             print("Unable to find", metric_eval, "metrics, "
-                  "exiting evaluation")
-            if((allow_run_cancel).lower() == 'true'):
+                                                 "exiting evaluation")
+            if allow_run_cancel.lower() == 'true':
                 run.parent.cancel()
         else:
             print(
@@ -132,13 +133,13 @@ try:
                 )
             )
 
-        if (new_model_mse < production_model_mse):
+        if new_model_mse < production_model_mse:
             print("New trained model performs better, "
                   "thus it should be registered")
         else:
             print("New trained model metric is worse than or equal to "
                   "production model so skipping model registration.")
-            if((allow_run_cancel).lower() == 'true'):
+            if allow_run_cancel.lower() == 'true':
                 run.parent.cancel()
     else:
         print("This is the first model, "
