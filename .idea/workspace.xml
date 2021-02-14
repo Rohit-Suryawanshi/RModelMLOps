@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f5cbbddf-72a9-413d-9b46-7302fb453694" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_project/conda_dependencies.yml" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/conda_dependencies.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_project/conda_dependencies_scorecopy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/conda_dependencies_scorecopy.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_project/conda_dependencies_scoring.yml" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/conda_dependencies_scoring.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_service/util/env_variables.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_service/util/env_variables.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
