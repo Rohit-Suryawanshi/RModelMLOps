@@ -1,5 +1,5 @@
 import numpy as np
-from first_project.training.train import train_model, get_model_metrics
+from train import train_model, get_model_metrics
 
 
 def test_train_model():
