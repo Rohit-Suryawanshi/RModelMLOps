@@ -3,7 +3,6 @@ from rpy2.robjects.conversion import localconverter
 import rpy2.robjects.packages as rp
 import pandas as pd
 import os
-import rpy2.robjects as ro
 from rpy2.robjects import pandas2ri
 from sklearn.metrics import accuracy_score
 
@@ -64,8 +63,8 @@ def main():
     data_dir = "data"
     data_file = os.path.join(data_dir, 'first_project.csv')
     data_file = pd.read_csv(data_file)
-    with localconverter(ro.default_converter + pandas2ri.converter):
-        data_file = ro.conversion.py2rpy(data_file)
+    with localconverter(rob.default_converter + pandas2ri.converter):
+        data_file = rob.conversion.py2rpy(data_file)
     x, y = read_data(data_file, 'default')
 
     data = split_data(x, y)

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5cbbddf-72a9-413d-9b46-7302fb453694" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/MLOpsPython-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MLOpsPython-master.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_project/scoring/score.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/scoring/score.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_project/training/test_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/training/test_train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_project/training/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/training/train.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/first_project/training/train_aml.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/training/train_aml.py" afterDir="false" />
     </list>
@@ -64,5 +64,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
