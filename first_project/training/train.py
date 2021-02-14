@@ -28,10 +28,9 @@ def split_data(x, y):
 def read_data(file_path, label_col):
     if isinstance(file_path, str):
         rob.globalenv['file_path'] = file_path
-        rob.r(f'''data <- read.csv(file_path)''')
+        rob.r('''data <- read.csv(file_path)''')
     else:
         rob.globalenv['data'] = file_path
-
     x = rob.r(f'data[, !(names(data) %in% "{label_col}")]')
     y = rob.r(f'as.factor(data${label_col})')
     return x, y
