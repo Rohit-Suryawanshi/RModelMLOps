@@ -9,7 +9,7 @@ from rpy2.robjects import pandas2ri
 from rpy2.robjects.conversion import localconverter
 from azureml.core.model import Model
 
-model, predict,  = rpy2.robjects.functions.SignatureTranslatedFunction
+model, predict = rpy2.robjects.functions.SignatureTranslatedFunction
 
 
 def init():
