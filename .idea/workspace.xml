@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5cbbddf-72a9-413d-9b46-7302fb453694" name="Default Changelist" comment="" />
+    <list default="true" id="f5cbbddf-72a9-413d-9b46-7302fb453694" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/MLOpsPython-master.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MLOpsPython-master.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_project/training/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/training/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_project/training/train_aml.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/training/train_aml.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,13 +20,15 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="pyconsole" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -34,10 +42,27 @@
     </task>
     <servers />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="337" y="168" key="com.intellij.ide.util.TipDialog" timestamp="1610540890543">
-      <screen x="0" y="0" width="1280" height="688" />
-    </state>
-    <state x="337" y="168" key="com.intellij.ide.util.TipDialog/0.0.1280.688@0.0.1280.688" timestamp="1610540890543" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

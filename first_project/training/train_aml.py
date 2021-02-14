@@ -23,7 +23,6 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE CODE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 """
-import rpy2.robjects as robjects
 import rpy2.robjects as ro
 from rpy2.robjects import pandas2ri
 from rpy2.robjects.conversion import localconverter
@@ -33,7 +32,7 @@ import os
 import argparse
 import joblib
 import json
-from train import split_data, train_model, get_model_metrics
+from train import split_data, train_model, get_model_metrics, read_data
 
 
 def register_dataset(
@@ -65,13 +64,13 @@ def main():
     parser.add_argument(
         "--step_output",
         type=str,
-        help=("output for passing data to next step")
+        help="output for passing data to next step"
     )
 
     parser.add_argument(
         "--dataset_version",
         type=str,
-        help=("dataset version")
+        help="dataset version"
     )
 
     parser.add_argument(
@@ -84,7 +83,7 @@ def main():
     parser.add_argument(
         "--caller_run_id",
         type=str,
-        help=("caller run id, for example ADF pipeline run id")
+        help="caller run id, for example ADF pipeline run id"
     )
 
     parser.add_argument(
@@ -130,8 +129,8 @@ def main():
         run.parent.log(k, v)
 
     # Get the dataset
-    if (dataset_name):
-        if (data_file_path == 'none'):
+    if dataset_name:
+        if data_file_path == 'none':
             dataset = Dataset.get_by_name(run.experiment.workspace, dataset_name, dataset_version)  # NOQA: E402, E501
         else:
             dataset = register_dataset(run.experiment.workspace,
@@ -139,7 +138,7 @@ def main():
                                        os.environ.get("DATASTORE_NAME"),
                                        data_file_path)
     else:
-        e = ("No dataset provided")
+        e = "No dataset provided"
         print(e)
         raise Exception(e)
 
@@ -183,4 +182,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
