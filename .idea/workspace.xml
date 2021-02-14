@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f5cbbddf-72a9-413d-9b46-7302fb453694" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pipelines/code-quality-template.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.pipelines/code-quality-template.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/first_project/scoring/score.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/scoring/score.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_service/pipelines/first_project_build_train_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_service/pipelines/first_project_build_train_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_service/pipelines/load_sample_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_service/pipelines/load_sample_data.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,9 +13,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1n0VS6UosfmsN4UMmCuwJ3J6m3e" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
