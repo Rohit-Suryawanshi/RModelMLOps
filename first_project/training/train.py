@@ -12,6 +12,7 @@ cat = rp.importr('caTools')
 
 
 def split_data(x, y):
+    print('[INFO] Data Splitting started')
     subset = rob.r('subset')
     mask = cat.sample_split(y, 0.8)
     rob.globalenv['mask'] = mask
@@ -21,11 +22,13 @@ def split_data(x, y):
 
     y_train = subset(y, mask)
     y_test = subset(y, inv_mask)
+    print('[INFO] Data Splitting ended')
     return {"train": {"X": x_train, "y": y_train},
             "test": {"X": x_test, "y": y_test}}
 
 
 def read_data(file_path, label_col):
+    print('[INFO] Data Reading started')
     if isinstance(file_path, str):
         rob.globalenv['file_path'] = file_path
         rob.r('''data <- read.csv(file_path)''')
@@ -33,10 +36,12 @@ def read_data(file_path, label_col):
         rob.globalenv['data'] = file_path
     x = rob.r(f'data[, !(names(data) %in% "{label_col}")]')
     y = rob.r(f'as.factor(data${label_col})')
+    print('[INFO] Data Reading Finished')
     return x, y
 
 
 def train_model(data):
+    print('[INFO] Model Training started')
     try:
         c5_0 = rp.importr('C50')
     except Exception as e:
@@ -45,7 +50,9 @@ def train_model(data):
         c5_0 = rp.importr('C50')
     x = data['train']['X']
     y = data['train']['y']
-    return c5_0.C5_0(x, y)
+    model = c5_0.C5_0(x, y)
+    print('[INFO] Model Training Completed')
+    return model
 
 
 def get_model_metrics(model, data):

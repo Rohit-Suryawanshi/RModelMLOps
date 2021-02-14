@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f5cbbddf-72a9-413d-9b46-7302fb453694" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_service/pipelines/first_project_build_train_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_service/pipelines/first_project_build_train_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml_service/pipelines/load_sample_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml_service/pipelines/load_sample_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/first_project/training/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_project/training/train.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
