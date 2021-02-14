@@ -1,31 +1,13 @@
-"""
-Copyright (C) Microsoft Corporation. All rights reserved.​
- ​
-Microsoft Corporation (“Microsoft”) grants you a nonexclusive, perpetual,
-royalty-free right to use, copy, and modify the software code provided by us
-("Software Code"). You may not sublicense the Software Code or any use of it
-(except to your affiliates and to vendors to perform work on your behalf)
-through distribution, network access, service agreement, lease, rental, or
-otherwise. This license does not purport to express any claim of ownership over
-data you may have shared with Microsoft in the creation of the Software Code.
-Unless applicable law gives you more rights, Microsoft reserves all other
-rights not expressly granted herein, whether by implication, estoppel or
-otherwise. ​
- ​
-THE SOFTWARE CODE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-MICROSOFT OR ITS LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
-IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE CODE, EVEN IF ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGE.
-"""
 import numpy
 import joblib
 import os
+import rpy2
+import rpy2.robjects.packages as rpackages
+import rpy2.robjects as robject
+import json
+import pandas as pd
+from rpy2.robjects import pandas2ri
+from rpy2.robjects.conversion import localconverter
 from azureml.core.model import Model
 from inference_schema.schema_decorators \
     import input_schema, output_schema
@@ -35,18 +17,18 @@ from inference_schema.parameter_types.numpy_parameter_type \
 
 def init():
     # load the model from file into a global object
-    global model
+    global model, predict, C5_0
 
     # we assume that we have just one model
     # AZUREML_MODEL_DIR is an environment variable created during deployment.
     # It is the path to the model folder
-    # (./azureml-models/$MODEL_NAME/$VERSION)
+    # (./azureml-models/$MODEL_NAME/$VERSION)s
     model_path = Model.get_model_path(
         os.getenv("AZUREML_MODEL_DIR").split('/')[-2])
-
     model = joblib.load(model_path)
 
-
+    C5_0 = rpackages.importr('C50')
+    predict = robject.r('predict')
 input_sample = numpy.array([
     [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0],
     [10.0, 9.0, 8.0, 7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0]])
@@ -58,11 +40,33 @@ output_sample = numpy.array([
 # Inference_schema generates a schema for your web service
 # It then creates an OpenAPI (Swagger) specification for the web service
 # at http://<scoring_base_url>/swagger.json
-@input_schema('data', NumpyParameterType(input_sample))
-@output_schema(NumpyParameterType(output_sample))
+#@input_schema('data', dict)
+#@output_schema(NumpyParameterType(output_sample))
 def run(data, request_headers):
-    result = model.predict(data)
+    py_data = eval(json.loads(data)['data'])
+        
+    #convert data to Python Dataframe
+    py_df=pd.DataFrame(data=py_data)
+    
+    schema = {'checking_balance':'object', 'months_loan_duration':'int32', 'credit_history' : 'object',
+                'purpose':'object', 'amount':'int32', 'savings_balance' : 'object',
+                'employment_duration':'object', 'percent_of_income':'int32', 'years_at_residence' : 'int32',
+                'age':'int32', 'other_credit':'object', 'housing' : 'object',
+                'existing_loans_count':'int32', 'job':'object', 'dependents' : 'int32',
+                'phone' : 'object'}
+                
+    py_df=py_df[list(schema.keys())]
 
+    for col, datatype in schema.items():
+        py_df[col] = py_df[col].astype(datatype)
+            
+    with localconverter(robject.default_converter + pandas2ri.converter):
+        py_df = robject.conversion.py2rpy(py_df)
+    print(py_df)
+    result = predict(model, py_df)
+    levels = list(result.levels)
+    result = pd.DataFrame({'result' : list(result)})
+    result = result.replace({1:levels[0], 2:levels[1]})
     # Demonstrate how we can log custom data into the Application Insights
     # traces collection.
     # The 'X-Ms-Request-id' value is generated internally and can be used to
@@ -79,12 +83,12 @@ def run(data, request_headers):
                len(result)
     ))
 
-    return {"result": result.tolist()}
+    return {"result": result.values}
 
 
 if __name__ == "__main__":
     # Test scoring
     init()
-    test_row = '{"data":[[1,2,3,4,5,6,7,8,9,10],[10,9,8,7,6,5,4,3,2,1]]}'
+    test_row = '''{"data": "[{'checking_balance': '< 0 DM', 'months_loan_duration': 6, 'credit_history': 'critical', 'purpose': 'furniture/appliances', 'amount': 1169, 'savings_balance': 'unknown', 'employment_duration': '> 7 years', 'percent_of_income': 4, 'years_at_residence': 4, 'age': 67, 'other_credit': 'none', 'housing': 'own', 'existing_loans_count': 2, 'job': 'skilled', 'dependents': 1, 'phone': 'yes'}]"}'''
     prediction = run(test_row, {})
     print("Test result: ", prediction)

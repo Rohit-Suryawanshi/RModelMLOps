@@ -31,4 +31,3 @@ dependencies:
       - flake8_formatter_junit_xml==0.0.*
       - azure-cli==2.3.*
       - rpy2==3.3.6
-      

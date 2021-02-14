@@ -69,7 +69,7 @@ def main():
 
     # Load the training data as dataframe
     data_dir = "/home/jagan-ds/Documents/azure-python-mlops"
-    data_file = os.path.join(data_dir, 'first_project.csv')
+    data_file = os.path.join(data_dir, 'credit.csv')
     import pandas as pd
     data_file = pd.read_csv(data_file)
     with localconverter(ro.default_converter + pandas2ri.converter):
