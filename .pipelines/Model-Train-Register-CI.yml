@@ -33,7 +33,7 @@ stages:
     container: mlops
     timeoutInMinutes: 0
     steps:
-   # - template: code-quality-template.yml
+    - template: code-quality-template.yml
     - task: AzureCLI@1
       inputs:
         azureSubscription: '$(WORKSPACE_SVC_CONNECTION)'
@@ -48,12 +48,12 @@ stages:
 
 - stage: 'Trigger_AML_Pipeline'
   displayName: 'Train and evaluate model'
-  # condition: succeeded()
+  condition: succeeded()
   variables:
     BUILD_URI: '$(SYSTEM.COLLECTIONURI)$(SYSTEM.TEAMPROJECT)/_build/results?buildId=$(BUILD.BUILDID)'
   jobs:
   - job: "Get_Pipeline_ID"
-    # condition: and(succeeded(), eq(coalesce(variables['auto-trigger-training'], 'true'), 'true'))
+    condition: and(succeeded(), eq(coalesce(variables['auto-trigger-training'], 'true'), 'true'))
     displayName: "Get Pipeline ID for execution"
     container: mlops
     timeoutInMinutes: 0
