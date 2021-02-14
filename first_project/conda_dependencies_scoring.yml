@@ -21,8 +21,16 @@ dependencies:
   # The python interpreter version.
   # Currently Azure ML Workbench only supports 3.5.2 and later.
   - python=3.7.*
-  - pip
-
+  - pip=20.0.*
+  - r-base
+  - r-proc
+  - r-jsonlite
+  - r-C50
+  - pandas
+  - gfortran_linux-64
+  - r-caTools
+  - r-utils
+  
   - pip:
       # Base AzureML SDK
       - azureml-sdk==1.6.*
@@ -30,3 +38,4 @@ dependencies:
       # Scoring deps
       - scikit-learn
       - pandas
+      - rpy2==3.3.6
