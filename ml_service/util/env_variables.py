@@ -117,7 +117,7 @@ class Env:
     )  # NOQA: E501
     aml_env_name_score_copy: Optional[str] = os.environ.get(
         "AML_ENV_NAME_SCORE_COPY"
-    )  # NOQA: E501
+    )  # NOaml_env_train_conda_dep_fileQA: E501
     batchscore_script_path: Optional[str] = os.environ.get(
         "BATCHSCORE_SCRIPT_PATH"
     )  # NOQA: E501

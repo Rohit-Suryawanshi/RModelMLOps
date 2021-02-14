@@ -17,6 +17,7 @@
 # These dependencies are used to create the environment used by the batch score 
 # pipeline step
 name: diabetes_regression_scoring_env
+
 channels:
   - r
   - conda-forge
